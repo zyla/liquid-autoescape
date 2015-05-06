@@ -1,3 +1,7 @@
-Gemfile.lock
-
+*.gem
+*.sw[op]
+*~
+/.bundle/
+.DS_Store
+/Gemfile.lock
 /gemfiles/*.lock
