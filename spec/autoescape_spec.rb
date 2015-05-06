@@ -29,7 +29,7 @@ describe "{% autoescape %}" do
     )
   end
 
-  it "applies HTML escaping to all wrapped variables" do
+  it "applies HTML escaping to all variables inside the block tag" do
     verify_template_output(
       "{% autoescape %}{{ one }} {{ two }} {{ three }}{% endautoescape %}",
       "&lt;tag&gt; &amp; &quot;quote&quot;",
@@ -45,7 +45,7 @@ describe "{% autoescape %}" do
     )
   end
 
-  it "does not double-escape internal variables" do
+  it "does not double-escape variables" do
     verify_template_output(
       "{% autoescape %}{{ escaped | escape }}{% endautoescape %}",
       "HTML &amp; CSS",
