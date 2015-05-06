@@ -53,11 +53,19 @@ describe "{% autoescape %}" do
     )
   end
 
-  it "does not escape external variables" do
+  it "does not escape variables outside the block tag" do
     verify_template_output(
-      "{{ variable }}{% autoescape %}{{ variable }}{% endautoescape %}",
-      "&&amp;",
+      "{{ variable }} {% autoescape %}{{ variable }}{% endautoescape %} {{ variable }}",
+      "& &amp; &",
       "variable" => "&"
+    )
+  end
+
+  it "can be called multiple times" do
+    verify_template_output(
+      "{% autoescape %}{{ var }}{% endautoescape %} {{ var }} {% autoescape %}{{ var }}{% endautoescape %}",
+      "&amp; & &amp;",
+      "var" => "&"
     )
   end
 

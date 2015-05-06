@@ -28,8 +28,10 @@ module Liquid
         end
 
         def render(context)
-          context.scopes.last[ENABLED_FLAG] = true
-          super
+          context.stack do
+            context[ENABLED_FLAG] = true
+            super
+          end
         end
 
       end
