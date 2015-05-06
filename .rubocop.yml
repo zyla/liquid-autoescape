@@ -25,6 +25,9 @@ Style/IfUnlessModifier:
 Style/SignalException:
   EnforcedStyle: only_raise
 
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
 Style/SpaceAroundOperators:
   Enabled: false
 
