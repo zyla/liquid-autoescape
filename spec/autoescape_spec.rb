@@ -70,7 +70,8 @@ describe "{% autoescape %}" do
   end
 
   it "raises an error when called with arguments" do
-    expect { Liquid::Template.parse("{% autoescape on %}{% endautoescape %}") }.to raise_error(Liquid::SyntaxError)
+    invalid = "{% autoescape on %}{% endautoescape %}"
+    expect { Liquid::Template.parse(invalid) }.to raise_error(Liquid::SyntaxError)
   end
 
 end
