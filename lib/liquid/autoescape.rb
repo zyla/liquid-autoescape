@@ -1,6 +1,5 @@
 require "liquid/autoescape/filters"
 require "liquid/autoescape/tags/autoescape"
-require "liquid/autoescape/variable"
 
 module Liquid
   module Autoescape

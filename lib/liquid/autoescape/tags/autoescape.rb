@@ -1,4 +1,5 @@
 require "liquid"
+require "liquid/autoescape/liquid_ext/variable"
 
 module Liquid
   module Autoescape
