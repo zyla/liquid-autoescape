@@ -22,7 +22,7 @@ module Liquid
 
         def initialize(tag_name, markup, tokens)
           unless markup.empty?
-            raise SyntaxError, "Syntax Error in 'autoescape' - Valid syntax: autoescape"
+            raise SyntaxError, "Syntax Error in 'autoescape' - Valid syntax: {% autoescape %}"
           end
 
           super
