@@ -1,5 +1,9 @@
-appraise "liquid-2" do
-  gem "liquid", "~> 2.0"
+appraise "liquid-2.5" do
+  gem "liquid", "~> 2.5.0"
+end
+
+appraise "liquid-2.6" do
+  gem "liquid", "~> 2.6.0"
 end
 
 appraise "liquid-3" do
