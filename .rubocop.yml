@@ -7,6 +7,9 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
   Enabled: false
 
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
 Style/Documentation:
   Enabled: false
 
@@ -36,6 +39,9 @@ Style/SpaceAroundEqualsInParameterDefault:
 
 Style/SpaceAroundOperators:
   Enabled: false
+
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
