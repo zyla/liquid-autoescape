@@ -16,7 +16,17 @@ module Liquid
       # @param [Liquid::Variable] variable A Liquid variable as used in a template
       # @return [Liquid::Autoescape::TemplateVariable]
       def self.from_liquid_variable(variable)
-        name = variable.name.instance_variable_get("@name") || variable.name
+        lookup_name = variable.name.instance_variable_get("@name")
+        if lookup_name
+          parts = [lookup_name]
+          variable.name.instance_variable_get("@lookups").each do |lookup|
+            parts << lookup
+          end
+          name = parts.join(".")
+        else
+          name = variable.name
+        end
+
         filters = variable.filters.map { |f| f.first.to_sym }
 
         new(:name => name, :filters => filters)

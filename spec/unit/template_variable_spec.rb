@@ -15,6 +15,11 @@ module Liquid
         expect(data.name).to eq("variable")
       end
 
+      it "can accept variable names describing a lookup" do
+        data = TemplateVariable.new(:name => "hash.key")
+        expect(data.name).to eq("hash.key")
+      end
+
       it "can accept a list of filters applied to the variable" do
         data = TemplateVariable.new(:name => "variable", :filters => [:downcase])
         expect(data.filters).to match_array([:downcase])
@@ -36,6 +41,13 @@ module Liquid
 
           expect(wrapper.name).to eq("from_liquid")
           expect(wrapper.filters).to eq([:downcase, :capitalize])
+        end
+
+        it "creates a wrapper around a Liquid variable describing a lookup" do
+          liquid_variable = Liquid::Variable.new("hash.key")
+          wrapper = TemplateVariable.from_liquid_variable(liquid_variable)
+
+          expect(wrapper.name).to eq("hash.key")
         end
 
       end

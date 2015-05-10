@@ -145,6 +145,18 @@ describe "{% autoescape %}" do
         )
       end
 
+      it "can handle exemptions with lookup-style variable names" do
+        Liquid::Autoescape.configure do |config|
+          config.exemptions.add { |variable| variable.name == "root.one" }
+        end
+
+        verify_template_output(
+          "{% autoescape %}{{ root.one }} {{ root.two }}{% endautoescape %}",
+          "<a> &lt;b&gt;",
+          "root" => {"one" => "<a>", "two" => "<b>"}
+        )
+      end
+
       it "respects the default exemptions" do
         verify_template_output(
           "{% autoescape %}{{ filter | skip_escape }} {{ other }}{% endautoescape %}",
