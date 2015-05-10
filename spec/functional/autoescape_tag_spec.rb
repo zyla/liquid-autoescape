@@ -82,4 +82,44 @@ describe "{% autoescape %}" do
     expect { Liquid::Template.parse(invalid) }.to raise_error(Liquid::SyntaxError)
   end
 
+  describe "configuration options" do
+
+    after(:each) { Liquid::Autoescape.reconfigure }
+
+    context "with global mode enabled" do
+
+      before(:each) do
+        Liquid::Autoescape.configure do |config|
+          config.global = true
+        end
+      end
+
+      it "escapes variables outside of an autoescape block" do
+        verify_template_output(
+          "{{ variable }}",
+          "&amp;",
+          "variable" => "&"
+        )
+      end
+
+      it "escapes variables in an autoescape block" do
+       verify_template_output(
+          "{% autoescape %}{{ variable }}{% endautoescape %}",
+          "&amp;",
+          "variable" => "&"
+        )
+      end
+
+      it "respects escaping filters" do
+        verify_template_output(
+          "{{ variable | skip_escape }}{% autoescape %}{{ variable | skip_escape }}{% endautoescape %}",
+          "&&",
+          "variable" => "&"
+        )
+      end
+
+    end
+
+  end
+
 end

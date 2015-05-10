@@ -8,7 +8,9 @@ module Liquid
     alias_method :original_render, :render
 
     def render(context)
-      return original_render(context) unless context[Autoescape::ENABLED_FLAG]
+      if !Autoescape.configuration.global? && !context[Autoescape::ENABLED_FLAG]
+        return original_render(context)
+      end
 
       # Determine if the variable is exempt from being escaped
       filter_names = @filters.map { |f| f.first.to_sym }
