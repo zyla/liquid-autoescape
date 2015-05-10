@@ -120,6 +120,41 @@ describe "{% autoescape %}" do
 
     end
 
+    context "with custom exemptions" do
+
+      let(:exemptions) do
+        Module.new do
+          def exemption(variable)
+            variable.name == "module"
+          end
+        end
+      end
+
+      before(:each) do
+        Liquid::Autoescape.configure do |config|
+          config.exemptions.add { |variable| variable.name == "filter" }
+          config.exemptions.add_module(exemptions)
+        end
+      end
+
+      it "does not escape exempt variables" do
+        verify_template_output(
+          "{% autoescape %}{{ filter }} {{ module }} {{ other }}{% endautoescape %}",
+          "<a> <b> &lt;i&gt;",
+          "filter" => "<a>", "module" => "<b>", "other" => "<i>"
+        )
+      end
+
+      it "respects the default exemptions" do
+        verify_template_output(
+          "{% autoescape %}{{ filter | skip_escape }} {{ other }}{% endautoescape %}",
+          "<a> &lt;b&gt;",
+          "filter" => "<a>", "other" => "<b>"
+        )
+      end
+
+    end
+
   end
 
 end
