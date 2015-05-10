@@ -155,6 +155,32 @@ describe "{% autoescape %}" do
 
     end
 
+    context "with trusted filters" do
+
+      before(:each) do
+        Liquid::Autoescape.configure do |config|
+          config.trusted_filters << :downcase
+        end
+      end
+
+      it "does not forget the default escaping filters" do
+        verify_template_output(
+          "{% autoescape %}{{ one | skip_escape }} {{ two | escape }}{% endautoescape %}",
+          "<a> &lt;b&gt;",
+          "one" => "<a>", "two" => "<b>"
+        )
+      end
+
+      it "exempts variables that use one of the trusted filters" do
+        verify_template_output(
+          "{% autoescape %}{{ variable | downcase }} {{ variable | capitalize }}{% endautoescape %}",
+          "r&d R&amp;d",
+          "variable" => "R&D"
+        )
+      end
+
+    end
+
   end
 
 end
