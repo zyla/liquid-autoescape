@@ -1,5 +1,5 @@
 require "liquid/autoescape/exemption_list"
-require "liquid/autoescape/variable_data"
+require "liquid/autoescape/template_variable"
 
 module Liquid
   module Autoescape
@@ -95,8 +95,8 @@ module Liquid
 
       describe "#apply?" do
 
-        let(:var_one) { VariableData.new(:name => "one") }
-        let(:var_two) { VariableData.new(:name => "two") }
+        let(:var_one) { TemplateVariable.new(:name => "one") }
+        let(:var_two) { TemplateVariable.new(:name => "two") }
 
         it "returns true when a filter function applies to a variable" do
           expect(exemptions.apply?(var_one)).to be(false)

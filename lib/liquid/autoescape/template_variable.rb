@@ -1,6 +1,6 @@
 module Liquid
   module Autoescape
-    class VariableData
+    class TemplateVariable
 
       # @return [String] The name of the variable
       attr_reader :name
@@ -14,7 +14,7 @@ module Liquid
       # variable names using different data structures.
       #
       # @param [Liquid::Variable] variable A Liquid variable as used in a template
-      # @return [Liquid::Autoescape::VariableData]
+      # @return [Liquid::Autoescape::TemplateVariable]
       def self.from_liquid_variable(variable)
         name = variable.name.instance_variable_get("@name") || variable.name
         filters = variable.filters.map { |f| f.first.to_sym }

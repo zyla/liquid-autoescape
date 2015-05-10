@@ -1,6 +1,6 @@
 require "liquid"
 require "liquid/autoescape"
-require "liquid/autoescape/variable_data"
+require "liquid/autoescape/template_variable"
 
 module Liquid
   class Variable
@@ -13,7 +13,7 @@ module Liquid
       end
 
       # Determine if the variable is exempt from being escaped
-      variable = Autoescape::VariableData.from_liquid_variable(self)
+      variable = Autoescape::TemplateVariable.from_liquid_variable(self)
       is_exempt = Autoescape.configuration.exemptions.apply?(variable)
 
       # Add the escape filter to the chain unless the variable is exempt

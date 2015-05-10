@@ -7,7 +7,7 @@ module Liquid
       # Create a new autoescaping exemption
       #
       # This requires a filter function to be provided that will be passed a
-      # +VariableData+ instance that it can use to return a boolean indicating
+      # +TemplateVariable+ instance that it can use to return a boolean indicating
       # whether the exemption applies to the variable.
       #
       # @param [Proc] filter A filter function to use for calculating the exemption
@@ -19,7 +19,7 @@ module Liquid
 
       # Determine whether the exemption applies to a Liquid variable
       #
-      # @param [Liquid::Autoescape::VariableData] A Liquid variable used in a template
+      # @param [Liquid::Autoescape::TemplateVariable] A Liquid variable used in a template
       # @return [Boolean] Whether the exemption applies to the variable
       def applies?(variable)
         @filter.call(variable)

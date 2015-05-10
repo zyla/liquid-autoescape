@@ -1,6 +1,6 @@
 require "liquid/autoescape"
 require "liquid/autoescape/core_exemptions"
-require "liquid/autoescape/variable_data"
+require "liquid/autoescape/template_variable"
 
 module Liquid
   module Autoescape
@@ -8,7 +8,7 @@ module Liquid
 
       let(:exemptions) { Module.new { extend CoreExemptions } }
 
-      let(:variable) { VariableData.new(:name => name, :filters => filters) }
+      let(:variable) { TemplateVariable.new(:name => name, :filters => filters) }
       let(:name) { "variable" }
       let(:filters) { [] }
 

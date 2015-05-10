@@ -44,7 +44,7 @@ module Liquid
 
       # Determine whether any of the exemptions apply to a Liquid variable
       #
-      # @param [Liquid::Autoescape::VariableData] variable A Liquid variable used in a template
+      # @param [Liquid::Autoescape::TemplateVariable] variable A Liquid variable used in a template
       # @return [Boolean] Whether any of the exemptions apply to the variable
       def apply?(variable)
         @exemptions.each do |exemption|
