@@ -1,7 +1,9 @@
 *.gem
 *.sw[op]
 *~
-/.bundle/
 .DS_Store
+/.yardoc/
+/.bundle/
+/doc/
 /Gemfile.lock
 /gemfiles/*.lock
