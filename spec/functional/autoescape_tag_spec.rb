@@ -103,7 +103,7 @@ describe "{% autoescape %}" do
       end
 
       it "escapes variables in an autoescape block" do
-       verify_template_output(
+        verify_template_output(
           "{% autoescape %}{{ variable }}{% endautoescape %}",
           "&amp;",
           "variable" => "&"
