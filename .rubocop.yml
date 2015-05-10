@@ -4,6 +4,9 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 20
 
+Metrics/ModuleLength:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
@@ -20,6 +23,9 @@ Style/HashSyntax:
   EnforcedStyle: hash_rockets
 
 Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Lambda:
   Enabled: false
 
 Style/SignalException:
