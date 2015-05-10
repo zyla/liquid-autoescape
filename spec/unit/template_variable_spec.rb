@@ -27,34 +27,50 @@ module Liquid
 
       describe ".from_liquid_variable" do
 
-        it "creates a wrapper around an unfiltered Liquid variable" do
-          liquid_variable = Liquid::Variable.new("from_liquid")
-          wrapper = TemplateVariable.from_liquid_variable(liquid_variable)
+        let(:liquid_variable) { Liquid::Variable.new(variable_name) }
+        let(:variable_name) { nil }
 
-          expect(wrapper.name).to eq("from_liquid")
-          expect(wrapper.filters).to be_empty
+        let(:wrapper) { TemplateVariable.from_liquid_variable(liquid_variable) }
+
+        context "with an unfiltered Liquid variable" do
+          let(:variable_name) { "from_liquid" }
+
+          it "resolves the variable name" do
+            expect(wrapper.name).to eq("from_liquid")
+          end
+
+          it "has an empty list of filters" do
+            expect(wrapper.filters).to be_empty
+          end
         end
 
-        it "creates a wrapper around a filtered Liquid variable" do
-          liquid_variable = Liquid::Variable.new("from_liquid | downcase | capitalize")
-          wrapper = TemplateVariable.from_liquid_variable(liquid_variable)
+        context "with a filtered Liquid variable" do
+          let(:variable_name) { "from_liquid | downcase | capitalize" }
 
-          expect(wrapper.name).to eq("from_liquid")
-          expect(wrapper.filters).to eq([:downcase, :capitalize])
+          it "resolves the variable name" do
+            expect(wrapper.name).to eq("from_liquid")
+          end
+
+          it "exposes a list of filters" do
+            expect(wrapper.filters).to eq([:downcase, :capitalize])
+          end
+
         end
 
-        it "creates a wrapper around a Liquid variable describing a lookup" do
-          liquid_variable = Liquid::Variable.new("hash.key")
-          wrapper = TemplateVariable.from_liquid_variable(liquid_variable)
+        context "with a lookup-style Liquid variable" do
+          let(:variable_name) { "hash.key" }
 
-          expect(wrapper.name).to eq("hash.key")
+          it "exposes the full variable name" do
+            expect(wrapper.name).to eq("hash.key")
+          end
         end
 
-        it "creates a wrapper around a Liquid variable describing a deep lookup" do
-          liquid_variable = Liquid::Variable.new("trunk.branch.leaf")
-          wrapper = TemplateVariable.from_liquid_variable(liquid_variable)
+        context "with a deep lookup-style Liquid variable" do
+          let(:variable_name) { "trunk.branch.leaf" }
 
-          expect(wrapper.name).to eq("trunk.branch.leaf")
+          it "exposes the full variable name" do
+            expect(wrapper.name).to eq("trunk.branch.leaf")
+          end
         end
 
       end
