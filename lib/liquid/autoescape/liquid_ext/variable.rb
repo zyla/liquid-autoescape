@@ -13,8 +13,7 @@ module Liquid
       end
 
       # Determine if the variable is exempt from being escaped
-      filter_names = @filters.map { |f| f.first.to_sym }
-      variable = Autoescape::VariableData.new(:name => @name, :filters => filter_names)
+      variable = Autoescape::VariableData.from_liquid_variable(self)
       is_exempt = Autoescape.configuration.exemptions.apply?(variable)
 
       # Add the escape filter to the chain unless the variable is exempt
