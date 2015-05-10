@@ -50,6 +50,13 @@ module Liquid
           expect(wrapper.name).to eq("hash.key")
         end
 
+        it "creates a wrapper around a Liquid variable describing a deep lookup" do
+          liquid_variable = Liquid::Variable.new("trunk.branch.leaf")
+          wrapper = TemplateVariable.from_liquid_variable(liquid_variable)
+
+          expect(wrapper.name).to eq("trunk.branch.leaf")
+        end
+
       end
 
     end

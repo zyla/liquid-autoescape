@@ -148,12 +148,14 @@ describe "{% autoescape %}" do
       it "can handle exemptions with lookup-style variable names" do
         Liquid::Autoescape.configure do |config|
           config.exemptions.add { |variable| variable.name == "root.one" }
+          config.exemptions.add { |variable| variable.name == "trunk.branch.leaf" }
         end
 
         verify_template_output(
-          "{% autoescape %}{{ root.one }} {{ root.two }}{% endautoescape %}",
-          "<a> &lt;b&gt;",
-          "root" => {"one" => "<a>", "two" => "<b>"}
+          "{% autoescape %}{{ root.one }} {{ root.two }} {{ trunk.branch.leaf }}{% endautoescape %}",
+          "<a> &lt;b&gt; <i>",
+          "root" => {"one" => "<a>", "two" => "<b>"},
+          "trunk" => {"branch" => {"leaf" => "<i>"}}
         )
       end
 
