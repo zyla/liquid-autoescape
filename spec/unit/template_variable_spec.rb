@@ -7,16 +7,16 @@ module Liquid
 
       it "requires a variable name" do
         expect { TemplateVariable.new }.to raise_error(KeyError)
-        expect { TemplateVariable.new(:name => "Variable") }.to_not raise_error
+        expect { TemplateVariable.new(:name => "variable") }.to_not raise_error
       end
 
       it "exposes its variable name" do
-        data = TemplateVariable.new(:name => "Variable")
-        expect(data.name).to eq("Variable")
+        data = TemplateVariable.new(:name => "variable")
+        expect(data.name).to eq("variable")
       end
 
       it "can accept a list of filters applied to the variable" do
-        data = TemplateVariable.new(:name => "Variable", :filters => [:downcase])
+        data = TemplateVariable.new(:name => "variable", :filters => [:downcase])
         expect(data.filters).to match_array([:downcase])
       end
 
