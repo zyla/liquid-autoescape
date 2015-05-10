@@ -1,28 +1,29 @@
 require "liquid"
 require "liquid/autoescape"
+require "liquid/autoescape/variable_data"
 
 module Liquid
   class Variable
-
-    # A list of all filters that should cause autoescaping to be skipped
-    SKIP_FILTERS = [:escape, :skip_escape]
 
     alias_method :original_render, :render
 
     def render(context)
       return original_render(context) unless context[Autoescape::ENABLED_FLAG]
 
-      # Add the escape filter to the chain if no skipping filters are found
+      # Determine if the variable is exempt from being escaped
       filter_names = @filters.map { |f| f.first.to_sym }
-      should_escape = (filter_names & SKIP_FILTERS).empty?
-      if should_escape
+      variable = Autoescape::VariableData.new(:name => @name, :filters => filter_names)
+      is_exempt = Autoescape.configuration.exemptions.apply?(variable)
+
+      # Add the escape filter to the chain unless the variable is exempt
+      unless is_exempt
         @filters << [:escape, []]
       end
 
       output = original_render(context)
 
       # Clean up by removing the escape filter from the chain after rendering
-      if should_escape
+      unless is_exempt
         @filters.pop
       end
 
