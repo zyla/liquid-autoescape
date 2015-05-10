@@ -14,9 +14,9 @@ module Liquid
       describe "#applies?" do
 
         it "evaluates the filter block in the context of variable data" do
-          exemption = Exemption.new { |variable| variable.name == "One" }
-          var_one = TemplateVariable.new(:name => "One")
-          var_two = TemplateVariable.new(:name => "Two")
+          exemption = Exemption.new { |variable| variable.name == "one" }
+          var_one = TemplateVariable.new(:name => "one")
+          var_two = TemplateVariable.new(:name => "two")
 
           expect(exemption.applies?(var_one)).to be(true)
           expect(exemption.applies?(var_two)).to be(false)
