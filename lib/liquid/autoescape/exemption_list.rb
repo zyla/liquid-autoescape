@@ -30,7 +30,7 @@ module Liquid
     #   end
     #
     #   exemptions = ExemptionList.new
-    #   exemptions.add_module(MyExemptions)
+    #   exemptions.import(MyExemptions)
     #
     class ExemptionList
 
@@ -40,7 +40,7 @@ module Liquid
       # @return [Liquid::Autoescape::ExemptionList]
       def self.from_module(source)
         exemptions = new
-        exemptions.add_module(source)
+        exemptions.import(source)
         exemptions
       end
 
@@ -62,7 +62,7 @@ module Liquid
       #
       # @param [Module] source The module providing exemptions as methods
       # @return [Liquid::Autoescape::ExemptionList] The updated exemption list
-      def add_module(source)
+      def import(source)
         container = Module.new { extend source }
         exemptions = source.instance_methods(false)
         exemptions.each do |exemption|

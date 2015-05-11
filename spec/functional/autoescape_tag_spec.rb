@@ -133,7 +133,7 @@ describe "{% autoescape %}" do
       before(:each) do
         Liquid::Autoescape.configure do |config|
           config.exemptions.add { |variable| variable.name == "filter" }
-          config.exemptions.add_module(exemptions)
+          config.exemptions.import(exemptions)
         end
       end
 

@@ -46,7 +46,7 @@ module Liquid
 
       end
 
-      describe "#add_module" do
+      describe "#import" do
 
         it "adds all instance methods from a module as exemptions" do
           custom = Module.new do
@@ -56,7 +56,7 @@ module Liquid
           end
 
           expect(exemptions.size).to eq(0)
-          exemptions.add_module(custom)
+          exemptions.import(custom)
           expect(exemptions.size).to eq(1)
         end
 
@@ -74,8 +74,8 @@ module Liquid
           end
 
           expect(exemptions.size).to eq(0)
-          exemptions.add_module(module_one)
-          exemptions.add_module(module_two)
+          exemptions.import(module_one)
+          exemptions.import(module_two)
           expect(exemptions.size).to eq(2)
         end
 
@@ -87,7 +87,7 @@ module Liquid
           end
 
           expect(exemptions.size).to eq(0)
-          exemptions.add_module(custom).add_module(custom)
+          exemptions.import(custom).import(custom)
           expect(exemptions.size).to eq(2)
         end
 
@@ -118,7 +118,7 @@ module Liquid
           expect(exemptions.apply?(var_one)).to be(false)
           expect(exemptions.apply?(var_two)).to be(false)
 
-          exemptions.add_module(custom)
+          exemptions.import(custom)
 
           expect(exemptions.apply?(var_one)).to be(true)
           expect(exemptions.apply?(var_two)).to be(false)
