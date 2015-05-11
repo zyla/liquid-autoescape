@@ -3,6 +3,35 @@ require "liquid/autoescape/exemption"
 
 module Liquid
   module Autoescape
+
+    # A list of exemptions that may apply to template variables
+    #
+    # Exemption lists manage one or more exemptions, and determine whether any
+    # managed exemptions applies to a template variable.  Exemptions can be
+    # added as individual filter functions, or can be imported in bulk from a
+    # module.
+    #
+    # @example Adding exemption functions
+    #   exemptions = ExemptionList.new
+    #   ExemptionList.add { |variable| variable.name == "one" }
+    #   ExemptionList.add { |variable| variable.name == "two" }
+    #
+    # @example Importing exemptions from a module
+    #   module MyExemptions
+    #
+    #     def exemption_one(variable)
+    #       variable.name == "one"
+    #     end
+    #
+    #     def exemption_two(variable)
+    #       variable.name == "two"
+    #     end
+    #
+    #   end
+    #
+    #   exemptions = ExemptionList.new
+    #   exemptions.add_module(MyExemptions)
+    #
     class ExemptionList
 
       # Create an exemption list from a module's instance methods
@@ -64,11 +93,12 @@ module Liquid
 
       # The number of exemptions in the list
       #
-      # @return [Boolean]
+      # @return [Integer]
       def size
         @exemptions.size
       end
 
     end
+
   end
 end

@@ -2,6 +2,11 @@ require "liquid/autoescape"
 
 module Liquid
   module Autoescape
+
+    # Core exemptions for all Liquid variables
+    #
+    # These exemptions are used to build the default exemption list referenced
+    # when determining whether variables should be escaped.
     module CoreExemptions
 
       # A list of all filters that influence escaping
@@ -30,5 +35,6 @@ module Liquid
       end
 
     end
+
   end
 end

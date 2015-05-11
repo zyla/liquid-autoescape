@@ -6,11 +6,12 @@ module Liquid
   module Autoescape
 
     # The context variable that stores the autoescape state
+    #
+    # @private
     ENABLED_FLAG = "liquid_autoescape_enabled"
 
     # Configure Liquid autoescaping
     #
-    # @yield [config] Allow autoescaping to be configured
     # @yieldparam [Liquid::Autoescape::Configuration] config The autoescape configuration
     def self.configure
       yield(configuration)

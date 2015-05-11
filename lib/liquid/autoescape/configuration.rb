@@ -3,6 +3,8 @@ require "liquid/autoescape/exemption_list"
 
 module Liquid
   module Autoescape
+
+    # A configuration file for setting autoescape options
     class Configuration
 
       # @return [Liquid::Autoescape::ExemptionList] The list of custom exemptions
@@ -34,5 +36,6 @@ module Liquid
       end
 
     end
+
   end
 end

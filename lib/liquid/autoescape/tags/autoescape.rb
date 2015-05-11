@@ -7,17 +7,18 @@ module Liquid
 
       # A block tag that automatically escapes all variables contained within it
       #
-      # All variables will have dangerous HTML characters escaped.  Any
-      # variables that should be exempt from escaping can have the `skip_escape`
-      # filter applied to them.
+      # All contained variables will have dangerous HTML characters escaped.
+      # Any variables that should be exempt from escaping should have the
+      # +skip_escape+ filter applied to them.
       #
-      # {% assign untrusted = "<script>window.reload();</script>" %}
-      # {% assign trusted = "<strong>Text</strong>" %}
+      # @example
+      #   {% assign untrusted = "<script>window.reload();</script>" %}
+      #   {% assign trusted = "<strong>Text</strong>" %}
       #
-      # {% autoescape %}
-      #   {{ untrusted }}
-      #   {{ trusted | skip_escape }}
-      # {% endautoescape %}
+      #   {% autoescape %}
+      #     {{ untrusted }}
+      #     {{ trusted | skip_escape }}
+      #   {% endautoescape %}
       class Autoescape < Block
 
         def initialize(tag_name, markup, tokens)
