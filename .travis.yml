@@ -1,0 +1,15 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+
+gemfile:
+  - gemfiles/liquid_2.5.gemfile
+  - gemfiles/liquid_2.6.gemfile
+  - gemfiles/liquid_3.gemfile
+
+bundler_args: --without documentation
+
+script: "bundle exec rake validate"
