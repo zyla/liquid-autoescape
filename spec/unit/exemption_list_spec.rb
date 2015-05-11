@@ -124,6 +124,14 @@ module Liquid
           expect(exemptions.apply?(var_two)).to be(false)
         end
 
+        it "has an #applies? alias" do
+          exemption_list = ExemptionList.new
+          exemption_list.add { |variable| variable.name == "one" }
+
+          expect(exemption_list.applies?(var_one)).to be(true)
+          expect(exemption_list.applies?(var_two)).to be(false)
+        end
+
       end
 
       describe "#populated?" do
