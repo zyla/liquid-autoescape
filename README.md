@@ -3,6 +3,11 @@
 This adds an `{% autoescape %}` block tag to Liquid that causes all variables
 referenced within it to be escaped for display in an HTML context.
 
+## Requirements
+
+* Ruby 1.9.3+
+* Liquid 2 or 3
+
 ## Basic Usage
 
 To enable the `{% autoescape %}` tag in your Liquid templates, load the tag's
