@@ -1,5 +1,9 @@
 # Liquid Autoescape Changelog
 
+## 0.2.1 / 2015-05-15
+
+* Bump version for release to RubyGems
+
 ## 0.2.0 / 2015-05-11
 
 * Add support for user-defined escaping exemptions
