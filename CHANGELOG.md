@@ -1,5 +1,9 @@
 # Liquid Autoescape Changelog
 
+## 1.0.0 / 2017-12-21
+
+* Require Ruby >= 2.1
+
 ## 0.2.2 / 2017-12-21
 
 * Upgrade the minimum version of `yard` to avoid a security vulnerability
