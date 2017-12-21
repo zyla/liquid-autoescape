@@ -1,4 +1,3 @@
-# encoding: utf-8
 lib = File.expand_path("../lib/", __FILE__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
@@ -14,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage     = "https://github.com/Within3/liquid-autoescape"
   s.license      = "MIT"
 
-  s.files        = %w(LICENSE README.md)
+  s.files        = %w[LICENSE README.md]
   s.files       += Dir.glob("lib/**/*")
   s.files       += Dir.glob("spec/**/*")
   s.test_files   = Dir.glob("spec/**/*")

@@ -6,7 +6,7 @@ module Liquid
   class Variable
 
     # @private
-    alias_method :non_escaping_render, :render
+    alias non_escaping_render render
 
     # Possibly render the variable with HTML escaping applied
     #

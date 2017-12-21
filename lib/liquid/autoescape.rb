@@ -8,7 +8,7 @@ module Liquid
     # The context variable that stores the autoescape state
     #
     # @private
-    ENABLED_FLAG = "liquid_autoescape_enabled"
+    ENABLED_FLAG = "liquid_autoescape_enabled".freeze
 
     # Configure Liquid autoescaping
     #

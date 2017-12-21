@@ -84,7 +84,7 @@ module Liquid
         false
       end
 
-      alias_method :apply?, :applies?
+      alias apply? applies?
 
       # Whether the exemption list has exemptions
       #

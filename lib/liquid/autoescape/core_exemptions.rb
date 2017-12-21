@@ -10,7 +10,10 @@ module Liquid
     module CoreExemptions
 
       # A list of all filters that influence escaping
-      ESCAPING_FILTERS = [:escape, :skip_escape]
+      #
+      # @private
+      ESCAPING_FILTERS = [:escape, :skip_escape].freeze
+      private_constant :ESCAPING_FILTERS
 
       # Determine whether a Liquid variable uses an escaping filter
       #
