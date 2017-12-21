@@ -1,3 +1,24 @@
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Layout/SpaceAroundOperators:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
 Metrics/LineLength:
   Enabled: false
 
@@ -7,19 +28,7 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
   Enabled: false
 
-Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
-
 Style/Documentation:
-  Enabled: false
-
-Style/EmptyLinesAroundBlockBody:
-  Enabled: false
-
-Style/EmptyLinesAroundClassBody:
-  Enabled: false
-
-Style/EmptyLinesAroundModuleBody:
   Enabled: false
 
 Style/HashSyntax:
@@ -33,15 +42,6 @@ Style/Lambda:
 
 Style/SignalException:
   EnforcedStyle: only_raise
-
-Style/SpaceAroundEqualsInParameterDefault:
-  EnforcedStyle: no_space
-
-Style/SpaceAroundOperators:
-  Enabled: false
-
-Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
