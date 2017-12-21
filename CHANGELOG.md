@@ -1,5 +1,10 @@
 # Liquid Autoescape Changelog
 
+## 0.2.2 / 2017-12-21
+
+* Upgrade the minimum version of `yard` to avoid a security vulnerability
+* Update development dependencies
+
 ## 0.2.1 / 2015-05-15
 
 * Bump version for release to RubyGems
