@@ -29,9 +29,9 @@ module Liquid
           expect { config.exemptions.add { true } }.to change { config.exemptions.size }.by(1)
         end
 
-        it "cannot directly exemption filters" do
+        it "cannot directly set exemption filters" do
           exemption = lambda { true }
-          expect { config.exemptions << exemption }.to raise_error
+          expect { config.exemptions << exemption }.to raise_error(NoMethodError)
         end
 
       end
