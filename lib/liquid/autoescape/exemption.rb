@@ -35,7 +35,7 @@ module Liquid
 
       # Determine whether the exemption applies to a Liquid variable
       #
-      # @param [Liquid::Autoescape::TemplateVariable] A Liquid variable used in a template
+      # @param [Liquid::Autoescape::TemplateVariable] variable A Liquid variable used in a template
       # @return [Boolean] Whether the exemption applies to the variable
       def applies?(variable)
         @filter.call(variable)

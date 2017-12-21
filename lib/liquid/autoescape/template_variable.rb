@@ -61,8 +61,8 @@ module Liquid
 
       # Create a wrapper around a Liquid variable used in a template
       #
-      # @options options [String] :name The name of the variable
-      # @options options [Array<Symbol>] :filters The filters applied to the variable
+      # @option options [String] :name The name of the variable
+      # @option options [Array<Symbol>] :filters The filters applied to the variable
       def initialize(options={})
         @name = options.fetch(:name)
         @filters = options[:filters] || []

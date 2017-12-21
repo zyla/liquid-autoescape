@@ -17,7 +17,7 @@ module Liquid
       # This accounts for both filters that are known to escape the variable
       # and those that should prevent the variable from being escaped.
       #
-      # @param [Liquid::Autoescape::TemplateVariable] A Liquid variable used in a template
+      # @param [Liquid::Autoescape::TemplateVariable] variable A Liquid variable used in a template
       # @return [Boolean]
       def uses_escaping_filter?(variable)
         !(variable.filters & ESCAPING_FILTERS).empty?
@@ -28,7 +28,7 @@ module Liquid
       # Trusted filters can be configured by the user to include any custom
       # filters that are known to generate already escaped markup.
       #
-      # @param [Liquid::Autoescape::TemplateVariable] A Liquid variable used in a template
+      # @param [Liquid::Autoescape::TemplateVariable] variable A Liquid variable used in a template
       # @return [Boolean]
       def uses_trusted_filter?(variable)
         !(variable.filters & Autoescape.configuration.trusted_filters).empty?
