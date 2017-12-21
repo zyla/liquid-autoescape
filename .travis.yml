@@ -12,4 +12,4 @@ gemfile:
 
 bundler_args: --without documentation
 
-script: "bundle exec rake validate"
+script: bundle exec rake validate
