@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency "liquid", ">= 2.0", "< 4.0"
 
   s.add_development_dependency "appraisal", "~> 2.0"
-  s.add_development_dependency "rake", "~> 10.0"
+  s.add_development_dependency "rake"
   s.add_development_dependency "rspec", "~> 3.0"
-  s.add_development_dependency "rubocop", "~> 0.30"
+  s.add_development_dependency "rubocop"
   s.add_development_dependency "yard", ">= 0.9.11"
 end
