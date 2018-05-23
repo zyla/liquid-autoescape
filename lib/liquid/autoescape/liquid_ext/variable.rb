@@ -27,7 +27,7 @@ module Liquid
       variable = Autoescape::TemplateVariable.from_liquid_variable(self)
       is_exempt = Autoescape.configuration.exemptions.apply?(variable)
 
-      @filters << [:escape, []] unless is_exempt
+      @filters << [:escape_once, []] unless is_exempt
       output = non_escaping_render(context)
       @filters.pop unless is_exempt
 
