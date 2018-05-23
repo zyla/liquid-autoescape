@@ -125,6 +125,13 @@ describe "{% autoescape %}" do
         )
       end
 
+      it "does not double-escape variables assigned using assign" do
+        verify_template_output(
+          "{% assign variable = \"&\" %}{{ variable }}",
+          "&amp;"
+        )
+      end
+
     end
 
     context "with custom exemptions" do
