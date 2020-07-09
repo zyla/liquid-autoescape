@@ -226,4 +226,11 @@ describe "{% autoescape %}" do
     )
   end
 
+  it "does not escape output of {% capture %}" do
+    verify_template_output(
+      "{% autoescape %}{% capture foo %}<div class='foo'>{% endcapture %}{{ foo }}{% endautoescape %}",
+      "<div class='foo'>",
+    )
+  end
+
 end
