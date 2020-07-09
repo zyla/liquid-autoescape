@@ -228,8 +228,15 @@ describe "{% autoescape %}" do
 
   it "does not escape output of {% capture %}" do
     verify_template_output(
-      "{% autoescape %}{% capture foo %}<div class='foo'>{% endcapture %}{{ foo }}{% endautoescape %}",
-      "<div class='foo'>",
+      "{% autoescape %}{% capture foo %}<div>{% endcapture %}{{ foo }}{% endautoescape %}",
+      "<div>",
+    )
+  end
+
+  it "escapes output of {% capture %} if a filter is applied" do
+    verify_template_output(
+      "{% autoescape %}{% capture foo %}<div>{% endcapture %}{{ foo | capitalize }}{% endautoescape %}",
+      "&lt;div&gt;",
     )
   end
 

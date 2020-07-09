@@ -1,5 +1,7 @@
 require "liquid"
 require "liquid/autoescape/liquid_ext/block"
+require "liquid/autoescape/liquid_ext/capture"
+require "liquid/autoescape/liquid_ext/standard_filters"
 
 module Liquid
   module Autoescape

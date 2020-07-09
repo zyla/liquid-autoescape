@@ -1,7 +1,7 @@
 require "liquid"
 require "liquid/autoescape"
 require "liquid/autoescape/template_variable"
-require "liquid/autoescape/liquid_ext/standard_filters"
+require "liquid/autoescape/safe_string"
 
 module Liquid
   class Block
@@ -25,7 +25,17 @@ module Liquid
         return output
       end
 
-      Liquid::StandardFilters.escape(output)
+      escape_if_unsafe(output)
+    end
+
+    private
+
+    def escape_if_unsafe(str)
+      if Liquid::Autoescape::SafeString.is_safe? str
+        str.to_s
+      else
+        Liquid::StandardFilters.escape(str)
+      end
     end
   end
 end
