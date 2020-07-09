@@ -197,4 +197,12 @@ describe "{% autoescape %}" do
 
   end
 
+  it "does not escape objects" do
+    verify_template_output(
+      "{% autoescape %}{% assign obj2 = obj %}{{ obj2.foo }}{% endautoescape %}",
+      "bar",
+      "obj" => { "foo" => "bar" }
+    )
+  end
+
 end
