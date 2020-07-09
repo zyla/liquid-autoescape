@@ -1,5 +1,5 @@
 require "liquid"
-require "liquid/autoescape/liquid_ext/variable"
+require "liquid/autoescape/liquid_ext/block"
 
 module Liquid
   module Autoescape
