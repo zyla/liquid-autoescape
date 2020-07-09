@@ -205,4 +205,11 @@ describe "{% autoescape %}" do
     )
   end
 
+  it "does not escape before truncate" do
+    verify_template_output(
+      "{% autoescape %}{% assign foo = \"<div class='foo'>\" %}{{ foo | truncate: 6 }}{% endautoescape %}",
+      "&lt;di...",
+    )
+  end
+
 end
