@@ -61,6 +61,13 @@ describe "{% autoescape %}" do
     )
   end
 
+  it "does not double-escape variables assigned using assign" do
+    verify_template_output(
+      "{% autoescape %}{% assign variable = \"&\" %}{{ variable }}{% endautoescape %}",
+      "&amp;"
+    )
+  end
+
   it "can be called multiple times" do
     verify_template_output(
       "{% autoescape %}{{ var }}{% endautoescape %} {{ var }} {% autoescape %}{{ var }}{% endautoescape %}",
@@ -115,6 +122,13 @@ describe "{% autoescape %}" do
           "{{ variable | skip_escape }}{% autoescape %}{{ variable | skip_escape }}{% endautoescape %}",
           "&&",
           "variable" => "&"
+        )
+      end
+
+      it "does not double-escape variables assigned using assign" do
+        verify_template_output(
+          "{% assign variable = \"&\" %}{{ variable }}",
+          "&amp;"
         )
       end
 
@@ -195,6 +209,35 @@ describe "{% autoescape %}" do
 
     end
 
+  end
+
+  it "does not escape objects" do
+    verify_template_output(
+      "{% autoescape %}{% assign obj2 = obj %}{{ obj2.foo }}{% endautoescape %}",
+      "bar",
+      "obj" => { "foo" => "bar" }
+    )
+  end
+
+  it "does not escape before truncate" do
+    verify_template_output(
+      "{% autoescape %}{% assign foo = \"<div class='foo'>\" %}{{ foo | truncate: 6 }}{% endautoescape %}",
+      "&lt;di...",
+    )
+  end
+
+  it "does not escape output of {% capture %}" do
+    verify_template_output(
+      "{% autoescape %}{% capture foo %}<div>{% endcapture %}{{ foo }}{% endautoescape %}",
+      "<div>",
+    )
+  end
+
+  it "escapes output of {% capture %} if a filter is applied" do
+    verify_template_output(
+      "{% autoescape %}{% capture foo %}<div>{% endcapture %}{{ foo | capitalize }}{% endautoescape %}",
+      "&lt;div&gt;",
+    )
   end
 
 end
