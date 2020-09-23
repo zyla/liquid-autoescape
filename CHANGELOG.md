@@ -1,5 +1,9 @@
 # Liquid Autoescape Changelog
 
+## 1.0.0-restaumatic1 / 2020-09-23
+
+* Reduce scope of escaping to prevent double-escaping in certain situations (https://github.com/restaumatic/liquid-autoescape/pull/2)
+
 ## 1.0.0 / 2017-12-21
 
 * Require Ruby >= 2.1
